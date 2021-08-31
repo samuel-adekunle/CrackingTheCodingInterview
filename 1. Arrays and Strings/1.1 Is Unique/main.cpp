@@ -1,5 +1,6 @@
 #include <string>
 #include <unordered_set>
+#include <cassert>
 
 /**
  * Determine if a string has all unique characters
