@@ -1,3 +1,3 @@
-Cracking the Coding Interview
+# Cracking the Coding Interview
 
-Collection of solutions to problems in C++
+Solutions to Interview Problems from the book in C++
