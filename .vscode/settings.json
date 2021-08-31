@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		".style.yapf": "toml",
-		"*.gohtml": "html",
-		"ostream": "cpp",
-		"sstream": "cpp",
-		"string": "cpp"
-	}
-}
