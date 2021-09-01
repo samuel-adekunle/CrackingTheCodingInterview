@@ -11,29 +11,29 @@
 */
 bool checkPermutation(const std::string &str1, const std::string &str2)
 {
-	if (str1.length() != str2.length())
-		return false;
+    if (str1.length() != str2.length())
+        return false;
 
-	std::multiset<char> mem;
+    std::multiset<char> mem;
 
-	for (const char &c : str1)
-	{
-		mem.insert(c);
-	}
+    for (const char &c : str1)
+    {
+        mem.insert(c);
+    }
 
-	for (const char &c : str2)
-	{
-		if (mem.contains(c))
-			mem.erase(mem.find(c)); // erase the first occurrence of 'c'
-		else
-			return false;
-	}
+    for (const char &c : str2)
+    {
+        if (mem.contains(c))
+            mem.erase(mem.find(c)); // erase the first occurrence of 'c'
+        else
+            return false;
+    }
 
-	return true;
+    return true;
 }
 
 int main(int argc, char const *argv[])
 {
-	assert(argc > 2);							// Expected two arguments
-	return !checkPermutation(argv[1], argv[2]); // 0 is True, 1 is False
+    assert(argc > 2);                           // Expected two arguments
+    return !checkPermutation(argv[1], argv[2]); // 0 is True, 1 is False
 }
