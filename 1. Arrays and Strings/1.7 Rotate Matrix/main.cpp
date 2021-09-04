@@ -62,7 +62,7 @@ void printImage(const ::image &mat, std::ostream &dst, const char separator = ' 
     std::cout << "After rotation" << std::endl;
     printImage(newImage, std::cout, ' ');
 
-    return oldImage;
+    return newImage;
 }
 
 int main(int argc, char const *argv[])
