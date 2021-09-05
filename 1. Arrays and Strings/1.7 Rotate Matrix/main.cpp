@@ -89,10 +89,10 @@ int main(int argc, char const *argv[])
                  {4, 4, 4, 5, 5, 5, 6, 6, 6},
                  {4, 4, 4, 5, 5, 5, 6, 6, 6}};
     std::cout << "Before rotation" << std::endl;
-    printImage(oldImage, std::cout, ' ');
+    printImage(oldImage, std::cout);
 
     const ::imagePtr newImage = rotateImageBy90(oldImage);
     std::cout << "After rotation" << std::endl;
-    printImage(newImage, std::cout, ' ');
+    printImage(newImage, std::cout);
     return 0;
 }
