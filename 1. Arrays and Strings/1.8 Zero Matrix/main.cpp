@@ -7,23 +7,36 @@ typedef std::vector<std::vector<int>> matrix;
 typedef std::shared_ptr<::matrix> matrixPtr;
 
 /**
- * Prints out matrix values to supplied ostream
+ * Converts matrix to string
  * 
- * @param mat matrix to be printed
- * @param dst ostream where 'img' values are printed
- * @param separator separator character between matrix elements. Defaults to single space
+ * @param mat matrix to be converted
+ * @param colSep separator character between columns. defaults to ' '
+ * @param rowSep separator character between rows. defaults to '\\n'
  * 
+ * @return string containing matrix values
 */
-void printMatrix(const ::matrixPtr &mat, std::ostream &dst, const char separator = ' ')
+std::string matrixToString(const ::matrixPtr &mat, const std::string &colSep = " ", const std::string &rowSep = "\n")
 {
-    for (const std::vector<int> &row : *mat)
+    std::string matStr;
+
+    for (auto rowIt = mat->begin(); rowIt != mat->end(); std::advance(rowIt, 1))
     {
-        for (const int item : row)
+        for (auto colIt = rowIt->begin(); colIt != rowIt->end(); std::advance(colIt, 1))
         {
-            dst << item << separator;
+            matStr += std::to_string(*colIt);
+            if (std::next(colIt, 1) != rowIt->end())
+            {
+                matStr += colSep;
+            }
         }
-        dst << std::endl;
+
+        if (std::next(rowIt, 1) != mat->end())
+        {
+            matStr += rowSep;
+        }
     }
+
+    return matStr;
 }
 
 /**
@@ -72,12 +85,14 @@ int main(int argc, char const *argv[])
     const ::matrixPtr mat(new ::matrix);
     *mat = {{1, 0},
             {1, 1}};
+
     std::cout << "Before transformation" << std::endl;
-    printMatrix(mat, std::cout);
+    std::cout << matrixToString(mat) << std::endl;
 
     zeroMatrix(mat);
+
     std::cout << "After transformation" << std::endl;
-    printMatrix(mat, std::cout);
+    std::cout << matrixToString(mat) << std::endl;
 
     return 0;
 }

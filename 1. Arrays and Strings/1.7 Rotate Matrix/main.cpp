@@ -11,23 +11,35 @@ constexpr int pixelSize = 9;
 const int pixelLength = std::sqrt(pixelSize);
 
 /**
- * Prints out image matrix values to supplied ostream
+ * Converts image matrix to string
  * 
- * @param img image matrix to be printed
- * @param dst ostream where 'img' values are printed
- * @param separator separator character between matrix elements. Defaults to single space
+ * @param colSep separator character between columns. defaults to ' '
+ * @param rowSep separator character between rows. defaults to '\\n'
  * 
+ * @return string containing image matrix values
 */
-void printImage(const ::imagePtr &img, std::ostream &dst, const char separator = ' ')
+std::string imageToString(const ::imagePtr &img, const std::string &colSep = " ", const std::string &rowSep = "\n")
 {
-    for (const std::vector<int> &row : *img)
+    std::string imgStr;
+
+    for (auto rowIt = img->begin(); rowIt != img->end(); std::advance(rowIt, 1))
     {
-        for (const int item : row)
+        for (auto colIt = rowIt->begin(); colIt != rowIt->end(); std::advance(colIt, 1))
         {
-            dst << item << separator;
+            imgStr += std::to_string(*colIt);
+            if (std::next(colIt, 1) != rowIt->end())
+            {
+                imgStr += colSep;
+            }
         }
-        dst << std::endl;
+
+        if (std::next(rowIt, 1) != img->end())
+        {
+            imgStr += rowSep;
+        }
     }
+
+    return imgStr;
 }
 
 /**
@@ -88,11 +100,14 @@ int main(int argc, char const *argv[])
                  {4, 4, 4, 5, 5, 5, 6, 6, 6},
                  {4, 4, 4, 5, 5, 5, 6, 6, 6},
                  {4, 4, 4, 5, 5, 5, 6, 6, 6}};
+
     std::cout << "Before rotation" << std::endl;
-    printImage(oldImage, std::cout);
+    std::cout << imageToString(oldImage) << std::endl;
 
     const ::imagePtr newImage = rotateImageBy90(oldImage);
+
     std::cout << "After rotation" << std::endl;
-    printImage(newImage, std::cout);
+    std::cout << imageToString(newImage) << std::endl;
+
     return 0;
 }
