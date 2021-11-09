@@ -1,5 +1,2 @@
-*.out
-*.out.*
-.vscode
-*.dSYM
-*.exe
+.idea
+cmake-build-debug
